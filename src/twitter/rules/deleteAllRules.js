@@ -5,7 +5,7 @@ async function deleteAllRules(rules, token) {
     return null
   }
 
-  const ids = rules.data.map(rule => rule.id)
+  const ids = rules.data.map((rule) => rule.id)
 
   const requestConfig = {
     url: 'https://api.twitter.com/labs/1/tweets/stream/filter/rules',

@@ -1,11 +1,17 @@
 const { getBearerToken, streamConnect } = require('./twitter')
-const { getAllRules } = require('./twitter/rules')
+const {
+  getAllRules,
+  deleteAllRules,
+  setAllRules,
+  rules,
+} = require('./twitter/rules')
+const { sleep } = require('./utils')
 
-;(async function () {
+;(async function app() {
   let currentRules, stream
   let timeout = 0
 
-  const token = await getBearerToken().catch(e => {
+  const token = await getBearerToken().catch((e) => {
     console.error(`Could not generate a Bearer token. Error: ${e}`)
     process.exit(-1)
   })
@@ -15,10 +21,10 @@ const { getAllRules } = require('./twitter/rules')
     currentRules = await getAllRules(token)
 
     // Delete all rules
-    // await deleteAllRules(currentRules, token)
+    await deleteAllRules(currentRules, token)
 
     // Add rules to the stream
-    // await setAllRules(rules, token)
+    await setAllRules(rules, token)
   } catch (e) {
     console.error(e)
     process.exit(-1)
@@ -46,5 +52,6 @@ const { getAllRules } = require('./twitter/rules')
       connect()
     }
   }
+
   connect()
 })()

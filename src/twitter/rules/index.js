@@ -6,5 +6,5 @@ module.exports = {
   getAllRules,
   setAllRules,
   deleteAllRules,
-  rules: [{ value: 'okeh', tag: 'test tag' }],
+  rules: [{ value: 'minnesota', tag: 'Minnesota' }],
 }

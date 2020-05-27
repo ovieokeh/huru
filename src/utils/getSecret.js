@@ -4,7 +4,7 @@ const client = new SecretManagerServiceClient()
 
 // allows us to retreive sensitive data during runtime
 async function getSecret(secret) {
-  const secretName = `projects/324158371881/secrets/${secret}`
+  const secretName = `projects/520252572579/secrets/${secret}`
 
   const [accessResponse] = await client.accessSecretVersion({
     name: secretName,

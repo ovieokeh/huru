@@ -1,6 +1,6 @@
 const { network } = require('../utils')
 
-const handleStreamData = data => {
+const handleStreamData = (data) => {
   try {
     const json = JSON.parse(data)
     console.log(json)
@@ -9,7 +9,7 @@ const handleStreamData = data => {
   }
 }
 
-const handleStreamError = error => {
+const handleStreamError = (stream) => (error) => {
   console.error(error)
   if (error.code === 'ETIMEDOUT') {
     stream.emit('timeout')
@@ -29,7 +29,7 @@ function streamConnect(token) {
   stream
     .on('start', () => console.log('stream started'))
     .on('data', handleStreamData)
-    .on('error', handleStreamError)
+    .on('error', handleStreamError(stream))
     .on('end', () => console.log('stream stopped'))
 
   return stream
